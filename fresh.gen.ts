@@ -7,7 +7,9 @@ import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
-import * as $Foot from "./islands/Foot.tsx";
+import * as $ActionButtons from "./islands/ActionButtons.tsx";
+import * as $Bandas from "./islands/Bandas.tsx";
+import * as $PirePer from "./islands/PirePer.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -19,7 +21,9 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./islands/Foot.tsx": $Foot,
+    "./islands/ActionButtons.tsx": $ActionButtons,
+    "./islands/Bandas.tsx": $Bandas,
+    "./islands/PirePer.tsx": $PirePer,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

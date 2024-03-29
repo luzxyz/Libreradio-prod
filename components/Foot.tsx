@@ -17,6 +17,8 @@ export default function Foot(){
             <p>andres@mail.com</p>
             <a href="mailto:giovanny@mail.com">Giovanny Pira Aldana</a>
             <p>giovanny@mail.com</p>
+            <a href="mailto:jonathan@mail.com">Jonathan Cabrera</a>
+            <p>jonathan@mail.com</p>
         </div>
         <div>
             <h5>Con la colaboración de 🚀</h5>

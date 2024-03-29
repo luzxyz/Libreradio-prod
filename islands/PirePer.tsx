@@ -1,0 +1,49 @@
+import { useSignal,useComputed } from "@preact/signals";
+
+interface PirePerProps {
+    potencia: number;
+    atenuacion: number;
+    gananciaIsotropa: number;
+    gananciaReal: number;
+    index: number;
+    nombre: string;
+}
+
+export default function PirePer(props: PirePerProps) {
+    const potencia = useSignal(props.potencia);
+    const atenuacion = useSignal(props.atenuacion);
+    const gananciaIsotropa = useSignal(props.gananciaIsotropa);
+    const gananciaReal = useSignal(props.gananciaReal);
+    const nombre = useSignal(props.nombre);
+
+    const pire = useComputed(() => potencia.value+atenuacion.value+
+                                   gananciaIsotropa.value);
+    const per = useComputed(() => potencia.value+atenuacion.value+
+                                   gananciaReal.value);
+    return (
+        <div class="pireper-container">
+            <p><strong>Banda {props.index+1} </strong></p>
+            <p><dfn>{nombre.value}</dfn></p>
+            <p>Alias Antena</p>
+            <input value={nombre.value} type="text" maxlength="20" onInput={(e) => nombre.value = e.currentTarget.value}/>
+            <p>Potencia(db)</p>
+            <input value={potencia.value} type="number" min="0" onInput={(e) => potencia.value = +e.currentTarget.value}/>
+            <p>Atenuacion(db)</p>
+            <input value={atenuacion.value} type="number" max="0" onInput={(e) => atenuacion.value = +e.currentTarget.value} />
+            <p>Ganancia Isotropa de la Antena(db)</p>
+            <input value={gananciaIsotropa.value} type="number" min="0" onInput={(e) => gananciaIsotropa.value = +e.currentTarget.value}/>
+            <p>Ganancia Real de la Antena(db)</p>
+            <input value={gananciaReal.value} type="number" min="0" onInput={(e) => gananciaReal.value = +e.currentTarget.value}/>
+
+           <div class="results">
+                <p><span>PIRE(db): </span> {pire}</p>
+                <p><span>PER(db): </span> {per}</p>
+           </div>
+           <div class="extras-1">
+            <p><strong>Datos zona ocupacional</strong></p>
+            <img src="/safhelm.svg" alt="Trabajador" width="45" />
+            <p><strong>Datos zona poblacional</strong></p>
+            <img src="/family.svg" alt="Civiles" width="45" />
+           </div>
+    </div>);
+}
