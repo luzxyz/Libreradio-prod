@@ -6,9 +6,7 @@ export default function Bandas() {
 
     const agregarBanda = () => {
         setLBandas(listaBandas.concat(
-                        <PirePer potencia={0} atenuacion={0}
-                                 gananciaIsotropa={0} gananciaReal={0}
-                                 index={listaBandas.length} nombre={"NombreAntena"} />
+                        <PirePer index={listaBandas.length} />
                     ));
     };
 

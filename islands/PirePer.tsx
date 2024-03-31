@@ -1,20 +1,20 @@
 import { useSignal,useComputed } from "@preact/signals";
 
-interface PirePerProps {
-    potencia: number;
-    atenuacion: number;
-    gananciaIsotropa: number;
-    gananciaReal: number;
-    index: number;
-    nombre: string;
-}
+export default function PirePer(props: [index: number]) {
+    const potencia = useSignal(0);
+    const atenuacion = useSignal(0);
+    const gananciaIsotropa = useSignal(0);
+    const gananciaReal = useSignal(0);
+    const nombre = useSignal("NombreAntena");
+    const frecuencia = useSignal(0);
 
-export default function PirePer(props: PirePerProps) {
-    const potencia = useSignal(props.potencia);
-    const atenuacion = useSignal(props.atenuacion);
-    const gananciaIsotropa = useSignal(props.gananciaIsotropa);
-    const gananciaReal = useSignal(props.gananciaReal);
-    const nombre = useSignal(props.nombre);
+    const OcEinc = useSignal(0);
+    const OcHinc = useSignal(0);
+    const OcSinc = useSignal(0);
+
+    const PobEinc = useSignal(0);
+    const PobHinc = useSignal(0);
+    const PobSinc = useSignal(0);
 
     const pire = useComputed(() => potencia.value+atenuacion.value+
                                    gananciaIsotropa.value);
@@ -34,6 +34,8 @@ export default function PirePer(props: PirePerProps) {
             <input value={gananciaIsotropa.value} type="number" min="0" onInput={(e) => gananciaIsotropa.value = +e.currentTarget.value}/>
             <p>Ganancia Real de la Antena(db)</p>
             <input value={gananciaReal.value} type="number" min="0" onInput={(e) => gananciaReal.value = +e.currentTarget.value}/>
+            <p>Frecuencia (Mhz)</p>
+            <input value={0} type="number" min="0" onInput={(e) => frecuencia.value = +e.currentTarget.value}/>
 
            <div class="results">
                 <p><span>PIRE(db): </span> {pire}</p>
@@ -42,8 +44,36 @@ export default function PirePer(props: PirePerProps) {
            <div class="extras-1">
             <p><strong>Datos zona ocupacional</strong></p>
             <img src="/safhelm.svg" alt="Trabajador" width="45" />
+	    <div class="extras-data">
+	    	<div class="extras-input">
+			<p>Intensidad Campo Electrico incidente</p>
+			<input value={0} type="number" min="0" onInput={(e) => OcEinc.value = e.currentTarget.value}/>
+		</div>
+	    	<div class="extras-input">
+			<p>Intensidad Campo Magnetico incidente</p>
+			<input value={0} type="number" min="0" onInput={(e) => OcHinc.value = e.currentTarget.value}/>
+		</div>
+	    	<div class="extras-input">
+			<p>Densidad de potencia incidente</p>
+			<input value={0} type="number" min="0" onInput={(e) => OcSinc.value = e.currentTarget.value}/>
+		</div>
+	    </div>
             <p><strong>Datos zona poblacional</strong></p>
             <img src="/family.svg" alt="Civiles" width="45" />
+	    <div class="extras-data">
+	    	<div class="extras-input">
+			<p>Intensidad Campo Electrico incidente</p>
+			<input value={0} type="number" min="0" onInput={(e) => PobEinc.value = e.currentTarget.value}/>
+		</div>
+	    	<div class="extras-input">
+			<p>Intensidad Campo Magnetico incidente</p>
+			<input value={0} type="number" min="0" onInput={(e) => PobHinc.value = e.currentTarget.value}/>
+		</div>
+	    	<div class="extras-input">
+			<p>Densidad de potencia incidente</p>
+			<input value={0} type="number" min="0" onInput={(e) => PobSinc.value = e.currentTarget.value}/>
+		</div>
+	    </div>
            </div>
     </div>);
 }

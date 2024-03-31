@@ -21,6 +21,22 @@ body {
     background: linear-gradient(247deg, rgba(232,251,255,1) 0%, rgba(250,255,255,1) 50%);
 }
 
+.actionButtons > * {
+    margin: 0 0.4em;
+}
+
+.actionButtons {
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+}
+
+.fakeButton {
+    text-decoration: none;
+    color: #D9D9DB;
+    background-color: #485460;
+    padding: 0.5em;
+}
+
 .main-page {
   margin: auto 2rem;
   padding: 2rem;
