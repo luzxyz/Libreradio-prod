@@ -4,26 +4,26 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_joke from "./routes/api/joke.ts";
-import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $resultados from "./routes/resultados.tsx";
 import * as $ActionButtons from "./islands/ActionButtons.tsx";
 import * as $Bandas from "./islands/Bandas.tsx";
 import * as $PirePer from "./islands/PirePer.tsx";
+import * as $Results from "./islands/Results.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/joke.ts": $api_joke,
-    "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/resultados.tsx": $resultados,
   },
   islands: {
     "./islands/ActionButtons.tsx": $ActionButtons,
     "./islands/Bandas.tsx": $Bandas,
     "./islands/PirePer.tsx": $PirePer,
+    "./islands/Results.tsx": $Results,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
