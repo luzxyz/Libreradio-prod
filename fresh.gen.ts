@@ -6,8 +6,9 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $resultados from "./routes/resultados.tsx";
-import * as $ActionButtons from "./islands/ActionButtons.tsx";
 import * as $Bandas from "./islands/Bandas.tsx";
+import * as $Evaluate from "./islands/Evaluate.tsx";
+import * as $Navigation from "./islands/Navigation.tsx";
 import * as $PirePer from "./islands/PirePer.tsx";
 import * as $Results from "./islands/Results.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -20,8 +21,9 @@ const manifest = {
     "./routes/resultados.tsx": $resultados,
   },
   islands: {
-    "./islands/ActionButtons.tsx": $ActionButtons,
     "./islands/Bandas.tsx": $Bandas,
+    "./islands/Evaluate.tsx": $Evaluate,
+    "./islands/Navigation.tsx": $Navigation,
     "./islands/PirePer.tsx": $PirePer,
     "./islands/Results.tsx": $Results,
   },

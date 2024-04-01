@@ -15,12 +15,9 @@ export default function Bandas() {
                          gananciaReal={dato.gananciaReal}
                          nombre={dato.nombre}
                          frecuencia={dato.frecuencia}
-                         OcElim={dato.OcElim} OcHlim={dato.OcHlim} OcSlim={dato.OcSlim}
-                         OcERMS={dato.OcERMS} OcHRMS={dato.OcHRMS} OcSRMS={dato.OcSRMS}
-                         OcEinc={dato.OcEinc} OcHinc={dato.OcHinc} OcSinc={dato.OcSinc}
-                         PobElim={dato.PobElim} PobHlim={dato.PobHlim} PobSlim={dato.PobSlim}
-                         PobERMS={dato.PobERMS} PobHRMS={dato.PobHRMS} PobSRMS={dato.PobSRMS}
-                         PobEinc={dato.PobEinc} PobHinc={dato.PobHinc} PobSinc={dato.PobSinc}
+                         Elim={dato.Elim} Hlim={dato.Hlim} Slim={dato.Slim}
+                         ERMS={dato.ERMS} HRMS={dato.HRMS} SRMS={dato.SRMS}
+                         Einc={dato.Einc} Hinc={dato.Hinc} Sinc={dato.Sinc}
                          />);
             return PPListaDatos;
         } else { return []; }
@@ -35,28 +32,23 @@ export default function Bandas() {
                     atenuacion: 0,
                     gananciaIsotropa: 0,
                     gananciaReal: 0,
-                    frecuencia: 0,
                     nombre: "",
-                    OcEinc: 0,
-                    OcHinc: 0,
-                    OcSinc: 0,
-                    OcElim: 0,
-                    OcHlim: 0,
-                    OcSlim: 0,
-                    OcERMS: 0,
-                    OcHRMS: 0,
-                    OcSRMS: 0,
-                    PobEinc: 0,
-                    PobHinc: 0,
-                    PobSinc: 0,
-                    PobElim: 0,
-                    PobHlim: 0,
-                    PobSlim: 0,
-                    PobERMS: 0,
-                    PobHRMS: 0,
-                    PobSRMS: 0,
+                    frecuencia: 0,
+
+                    Einc: 0,
+                    Hinc: 0,
+                    Sinc: 0,
+
+                    Elim: 0,
+                    Hlim: 0,
+                    Slim: 0,
+                    ERMS: 0,
+                    HRMS: 0,
+                    SRMS: 0,
+
                     pire: 0,
-                    per: 0
+                    per: 0,
+                    ER: 0
                 });
 
         setLBandas(listaBandas.concat(
@@ -66,12 +58,9 @@ export default function Bandas() {
                                  gananciaReal={0}
                                  nombre={""}
                                  frecuencia={0}
-                                 OcEinc={0} OcHinc={0} OcSinc={0}
-                                 OcElim={0} OcHlim={0} OcSlim={0}
-                                 OcERMS={0} OcHRMS={0} OcSRMS={0}
-                                 PobEinc={0} PobHinc={0} PobSinc={0}
-                                 PobElim={0} PobHlim={0} PobSlim={0}
-                                 PobERMS={0} PobHRMS={0} PobSRMS={0}
+                                 Einc={0} Hinc={0} Sinc={0}
+                                 Elim={0} Hlim={0} Slim={0}
+                                 ERMS={0} HRMS={0} SRMS={0}
                                  />
                     ));
     };

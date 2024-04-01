@@ -11,25 +11,17 @@ interface pirePer {
     nombre : string;
     frecuencia : number;
 
-    OcEinc: number;
-    OcHinc: number;
-    OcSinc: number;
-    OcElim: number;
-    OcHlim: number;
-    OcSlim: number;
-    OcERMS: number;
-    OcHRMS: number;
-    OcSRMS: number;
+    Einc: number;
+    Hinc: number;
+    Sinc: number;
 
-    PobEinc: number;
-    PobHinc: number;
-    PobSinc: number;
-    PobElim: number;
-    PobHlim: number;
-    PobSlim: number;
-    PobERMS: number;
-    PobHRMS: number;
-    PobSRMS: number;
+    Elim: number;
+    Hlim: number;
+    Slim: number;
+    ERMS: number;
+    HRMS: number;
+    SRMS: number;
+
 }
 
 export default function PirePer(props: pirePer) {
@@ -39,31 +31,25 @@ export default function PirePer(props: pirePer) {
     const gananciaReal = useSignal(props.gananciaReal);
     const nombre = useSignal(props.nombre);
     const frecuencia = useSignal(props.frecuencia);
+    const Elim = useSignal(props.Elim);
+    const Hlim = useSignal(props.Hlim);
+    const Slim = useSignal(props.Slim);
+    const ERMS = useSignal(props.ERMS);
+    const HRMS = useSignal(props.HRMS);
+    const SRMS = useSignal(props.SRMS);
 
-    const OcEinc= useSignal(props.OcEinc);
-    const OcHinc= useSignal(props.OcHinc);
-    const OcSinc= useSignal(props.OcSinc);
-    const OcElim = useSignal(props.OcElim);
-    const OcHlim = useSignal(props.OcHlim);
-    const OcSlim = useSignal(props.OcSlim);
-    const OcERMS = useSignal(props.OcERMS);
-    const OcHRMS = useSignal(props.OcHRMS);
-    const OcSRMS = useSignal(props.OcSRMS);
-
-    const PobEinc = useSignal(props.PobEinc);
-    const PobHinc = useSignal(props.PobHinc);
-    const PobSinc = useSignal(props.PobSinc);
-    const PobElim = useSignal(props.PobElim);
-    const PobHlim = useSignal(props.PobHlim);
-    const PobSlim = useSignal(props.PobSlim);
-    const PobERMS = useSignal(props.PobERMS);
-    const PobHRMS = useSignal(props.PobHRMS);
-    const PobSRMS = useSignal(props.PobSRMS);
+    const Einc= useSignal(props.Einc);
+    const Hinc= useSignal(props.Hinc);
+    const Sinc= useSignal(props.Sinc);
 
     const pire = useComputed(() => potencia.value+atenuacion.value+
                                    gananciaIsotropa.value);
     const per = useComputed(() => potencia.value+atenuacion.value+
                                    gananciaReal.value);
+    const ER = useComputed(()=> {
+                                    const num = Math.max(Math.pow(ERMS.value/Elim.value,2),Math.pow(HRMS.value/Hlim.value,2));
+                                    return Math.round((num + Number.EPSILON) * 100) / 100;
+                                    });
 
     useEffect(() => {
         const newDatos = {
@@ -74,26 +60,18 @@ export default function PirePer(props: pirePer) {
             frecuencia: frecuencia.value,
             index: props.index,
             nombre: nombre.value,
-            OcEinc: OcEinc.value,
-            OcHinc: OcHinc.value,
-            OcSinc: OcSinc.value,
-            OcElim: OcElim.value,
-            OcHlim: OcHlim.value,
-            OcSlim: OcSlim.value,
-            OcERMS: OcERMS.value,
-            OcHRMS: OcHRMS.value,
-            OcSRMS: OcSRMS.value,
-            PobEinc: PobEinc.value,
-            PobHinc: PobHinc.value,
-            PobSinc: PobSinc.value,
-            PobElim: PobElim.value,
-            PobHlim: PobHlim.value,
-            PobSlim: PobSlim.value,
-            PobERMS: PobERMS.value,
-            PobHRMS: PobHRMS.value,
-            PobSRMS: PobSRMS.value,
+            Einc: Einc.value,
+            Hinc: Hinc.value,
+            Sinc: Sinc.value,
+            Elim: Elim.value,
+            Hlim: Hlim.value,
+            Slim: Slim.value,
+            ERMS: ERMS.value,
+            HRMS: HRMS.value,
+            SRMS: SRMS.value,
             pire: pire.value,
-            per: per.value
+            per: per.value,
+            ER: ER.value,
         }
         
         listaDatos.value.splice(props.index,1,newDatos);
@@ -102,13 +80,10 @@ export default function PirePer(props: pirePer) {
 
       }, [potencia.value, atenuacion.value, gananciaIsotropa.value,
           gananciaReal.value, nombre.value, frecuencia.value,
-          OcEinc.value, OcHinc.value, OcSinc.value,
-          OcElim.value, OcHlim.value, OcSlim.value,
-          OcERMS.value, OcHRMS.value, OcSRMS.value,
-          PobEinc.value, PobHinc.value, PobSinc.value,
-          PobElim.value, PobHlim.value, PobSlim.value,
-          PobERMS.value, PobHRMS.value, PobSRMS.value,
-          pire.value, per.value]);
+          Einc.value, Hinc.value, Sinc.value,
+          Elim.value, Hlim.value, Slim.value,
+          ERMS.value, HRMS.value, SRMS.value,
+          pire, per, ER]);
 
     return (
         <div class="pireper-container">
@@ -130,88 +105,48 @@ export default function PirePer(props: pirePer) {
            <div class="results">
                 <p><span>PIRE(db): </span> {pire}</p>
                 <p><span>PER(db): </span> {per}</p>
+                <p><span>ER: </span> {ER}</p>
            </div>
            <div class="extras-1">
-            <p><strong>Datos zona ocupacional</strong></p>
-            <img src="/safhelm.svg" alt="Trabajador" width="45" />
-	    <div class="extras-data">
-	    	<div class="extras-input">
-			<p>Intensidad Campo Electrico incidente (V/m)</p>
-			<input value={OcEinc.value} type="number" min="0" onInput={(e) => OcEinc.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Limite mas estricto Intensidad Campo Electrico (V/m)</p>
-			<input value={OcElim.value} type="number" min="0" onInput={(e) => OcElim.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Intensidad Campo Electrico [RMS](V/m)</p>
-			<input value={OcERMS.value} type="number" min="0" onInput={(e) => OcERMS.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Intensidad Campo Magnetico incidente (A/m)</p>
-			<input value={OcHinc.value} type="number" min="0" onInput={(e) => OcHinc.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Limite mas estricto Intensidad Campo Magnetico (A/m)</p>
-			<input value={OcHlim.value} type="number" min="0" onInput={(e) => OcHlim.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Intensidad estricto Campo Magnetico [RMS](A/m)</p>
-			<input value={OcHRMS.value} type="number" min="0" onInput={(e) => OcHRMS.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Densidad de potencia incidente (W/m)</p>
-			<input value={OcSinc.value} type="number" min="0" onInput={(e) => OcSinc.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Limite mas estricto Densidad de potencia (W/m)</p>
-			<input value={OcSlim.value} type="number" min="0" onInput={(e) => OcSlim.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Densidad de potencia [RMS] (W/m)</p>
-			<input value={OcSRMS.value} type="number" min="0" onInput={(e) => OcSRMS.value = +e.currentTarget.value}/>
-		</div>
-	    </div>
-            <p><strong>Datos zona poblacional</strong></p>
-            <img src="/family.svg" alt="Civiles" width="45" />
-	    <div class="extras-data">
-	    	<div class="extras-input">
-			<p>Intensidad Campo Electrico incidente (V/m)</p>
-			<input value={PobEinc.value} type="number" min="0" onInput={(e) => PobEinc.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Limite mas estricto Intensidad Campo Electrico (V/m)</p>
-			<input value={PobElim.value} type="number" min="0" onInput={(e) => PobElim.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Intensidad Campo Electrico [RMS](V/m)</p>
-			<input value={PobERMS.value} type="number" min="0" onInput={(e) => PobERMS.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Intensidad Campo Magnetico incidente (A/m)</p>
-			<input value={PobHinc.value} type="number" min="0" onInput={(e) => PobHinc.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Limite mas estricto Intensidad Campo Magnetico (A/m)</p>
-			<input value={PobHlim.value} type="number" min="0" onInput={(e) => PobHlim.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Intensidad estricto Campo Magnetico [RMS](A/m)</p>
-			<input value={PobHRMS.value} type="number" min="0" onInput={(e) => PobHRMS.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Densidad de potencia incidente (W/m)</p>
-			<input value={PobSinc.value} type="number" min="0" onInput={(e) => PobSinc.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Limite mas estricto Densidad de potencia (W/m)</p>
-			<input value={PobSlim.value} type="number" min="0" onInput={(e) => PobSlim.value = +e.currentTarget.value}/>
-		</div>
-	    	<div class="extras-input">
-			<p>Densidad de potencia [RMS] (W/m)</p>
-			<input value={PobSRMS.value} type="number" min="0" onInput={(e) => PobSRMS.value = +e.currentTarget.value}/>
-		</div>
-	    </div>
+                <p><strong>Datos medidos en campo</strong></p>
+                <div class="extras-data">
+                    <div class="extras-input">
+                        <p>Intensidad Campo Electrico incidente (V/m)</p>
+                        <input value={Einc.value} type="number" min="0" onInput={(e) => Einc.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Intensidad Campo Magnetico incidente (A/m)</p>
+                        <input value={Hinc.value} type="number" min="0" onInput={(e) => Hinc.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Densidad de potencia incidente (W/m)</p>
+                        <input value={Sinc.value} type="number" min="0" onInput={(e) => Sinc.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Limite Campo Electrico (V/m)</p>
+                        <input type="number" min="0" value={Elim.value} onInput={(e) => Elim.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Limite Campo Magnetico (A/m)</p>
+                        <input type="number" min="0" value={Hlim.value} onInput={(e) => Hlim.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Limite Densidad Potencia (W/m)</p>
+                        <input type="number" min="0" value={Slim.value} onInput={(e) => Slim.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Campo Electrico - RMS (V/m)</p>
+                        <input type="number" min="0" value={ERMS.value} onInput={(e) => ERMS.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Campo Magnetico - RMS (A/m)</p>
+                        <input type="number" min="0" value={HRMS.value} onInput={(e) => HRMS.value = +e.currentTarget.value}/>
+                    </div>
+                    <div class="extras-input">
+                        <p>Densidad Potencia - RMS (W/m)</p>
+                        <input type="number" min="0" value={SRMS.value} onInput={(e) => SRMS.value = +e.currentTarget.value}/>
+                    </div>
+                </div>
            </div>
     </div>);
 }

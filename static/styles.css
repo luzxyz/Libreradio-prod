@@ -21,19 +21,21 @@ body {
     background: linear-gradient(247deg, rgba(232,251,255,1) 0%, rgba(250,255,255,1) 50%);
 }
 
-.actionButtons > * {
-    margin: 0 0.4em;
+.Navbar {
+    position: sticky;
+    top: 0;
+    padding: 0.8em 0px;
+    background-color: #1B1D24;
 }
 
-.actionButtons {
-    margin-top: 2vh;
-    margin-bottom: 4vh;
+.actionButtons > * {
+    margin: 0 0.4em;
 }
 
 .fakeButton {
     text-decoration: none;
     color: #D9D9DB;
-    background-color: #485460;
+    background-color: #4D5266;
     padding: 0.5em;
     border: none;
     font-size: 1.2em;
@@ -42,12 +44,13 @@ body {
 
 .main-page {
   margin: auto 2rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .section-title {
     --border-color: #2EBDF5; 
     border-bottom: 0.5vh var(--border-color) solid;
+    margin-top: 1rem;
 }
 
 .main-title .star-font {
@@ -87,7 +90,6 @@ body {
 .pireper-container .extras-1 {
     --bg-color: #F5D56E;
     background-color: var(--bg-color);
-    border-radius: 10% 25%; 
     backdrop-filter: blur(10px);
 }
 
@@ -99,6 +101,47 @@ body {
 .inputs .content{
     display: inline-flex;
     flex-direction: row;
+}
+
+.eval-info {
+    padding: 2rem 0px;
+}
+
+.meta-eval {
+    display: flex;
+    flex-direction: row;
+}
+
+.boolInfo {
+    display: flex;
+    flex-direction: row;
+    margin: 4em 0px;
+}
+
+.boolInfoLeft {
+    max-width: 8em;
+}
+
+.boolInfoLeft img {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.boolInfoLeft h2 {
+    text-align: center;
+}
+
+.false {
+    background-color: #F5909C;
+}
+
+.true {
+    background-color: #3EEDBA;
+}
+
+.meta-eval > div {
+    padding: 0px 1em;
 }
 
 footer {

@@ -1,33 +1,28 @@
 import {signal} from "@preact/signals";
 
 interface Datos {
+    index: number;
     potencia: number;
     atenuacion: number;
     gananciaIsotropa: number;
     gananciaReal: number;
-    frecuencia: number;
-    index: number;
     nombre: string;
-    OcEinc: number,
-    OcHinc: number,
-    OcSinc: number,
-    OcElim: number,
-    OcHlim: number,
-    OcSlim: number,
-    OcERMS: number,
-    OcHRMS: number,
-    OcSRMS: number,
-    PobEinc: number,
-    PobHinc: number,
-    PobSinc: number,
-    PobElim: number,
-    PobHlim: number,
-    PobSlim: number,
-    PobERMS: number,
-    PobHRMS: number,
-    PobSRMS: number,
+    frecuencia: number;
+
+    Einc: number,
+    Hinc: number,
+    Sinc: number,
+
+    Elim: number,
+    Hlim: number,
+    Slim: number,
+    ERMS: number,
+    HRMS: number,
+    SRMS: number,
+
     pire: number,
-    per: number
+    per: number,
+    ER: number
 }
 
 export const listaDatos = signal<Datos[]>([]);

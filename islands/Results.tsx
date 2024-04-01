@@ -14,16 +14,22 @@ function darInformacion(){
 	      nombre={dato.nombre}
 	      frecuencia={dato.frecuencia}
 
-	      OcEinc={dato.OcEinc}
-	      OcHinc={dato.OcHinc}
-	      OcSinc={dato.OcSinc}
+	      Einc={dato.Einc}
+	      Hinc={dato.Hinc}
+	      Sinc={dato.Sinc}
 
-	      PobEinc={dato.PobEinc}
-	      PobHinc={dato.PobHinc}
-	      PobSinc={dato.PobSinc}
+          Elim={dato.Elim}
+          Hlim={dato.Hlim}
+          Slim={dato.Slim}
+
+          ERMS={dato.ERMS}
+          HRMS={dato.HRMS}
+          SRMS={dato.SRMS}
 
 	      pire={dato.pire}
 	      per={dato.per}
+
+          ER={dato.ER}
 	 />);
     return componentes;
 }
@@ -39,7 +45,10 @@ export default function Results() {
     }
 
     const [listaContenido, setLContenido] = useState(loadLocalStorageData);
-    const [listaEvaluacion, setLEvaluacion] = useState(0);
+
+    if (listaContenido.length == 0){
+		return <p class="results-nodata">No se tienen datos en el registro.</p>;
+    }
 
     return (
 	    <div>

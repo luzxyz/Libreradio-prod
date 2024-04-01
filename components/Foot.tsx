@@ -4,9 +4,9 @@ export default function Foot(){
         <footer>
         <div>
             <p>Este aplicativo es software libre 😎</p>
-            <p>Licencia <a href="">GPLv3</a> </p>
+            <p>Licencia <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPLv3</a> </p>
             <p><a href="https://codeberg.org/luzxyz/librered-dev" target="_blank" >Repositorio principal en Codeberg</a></p>
-            <p><a href="" target="_blank">Repositorio mirror en Sourceforge</a></p>
+            <p><a href="https://sourceforge.net/projects/luzxyzlibreradio/" target="_blank">Repositorio mirror en Sourceforge</a></p>
             <p><a href="https://github.com/luzxyz/Libreradio-prod" target="_blank">Repositorio mirror en Github</a> (Deployment)</p>
         </div>
         <div>
