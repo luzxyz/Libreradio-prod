@@ -5,7 +5,6 @@ import PirePer from "./PirePer.tsx";
 export default function Bandas() {
 
     const loadLocalStorageData = () => {
-
         if ( localStorage.getItem("LSlistaDatos") !== null ) {
             leerLocalStorage();
             let PPListaDatos = [...listaDatos.value];
@@ -16,8 +15,12 @@ export default function Bandas() {
                          gananciaReal={dato.gananciaReal}
                          nombre={dato.nombre}
                          frecuencia={dato.frecuencia}
+                         OcElim={dato.OcElim} OcHlim={dato.OcHlim} OcSlim={dato.OcSlim}
+                         OcERMS={dato.OcERMS} OcHRMS={dato.OcHRMS} OcSRMS={dato.OcSRMS}
                          OcEinc={dato.OcEinc} OcHinc={dato.OcHinc} OcSinc={dato.OcSinc}
-                         PobEinc={dato.PobEinc} PobHinc={dato.PobEinc} PobSinc={dato.PobEinc}
+                         PobElim={dato.PobElim} PobHlim={dato.PobHlim} PobSlim={dato.PobSlim}
+                         PobERMS={dato.PobERMS} PobHRMS={dato.PobHRMS} PobSRMS={dato.PobSRMS}
+                         PobEinc={dato.PobEinc} PobHinc={dato.PobHinc} PobSinc={dato.PobSinc}
                          />);
             return PPListaDatos;
         } else { return []; }
@@ -37,9 +40,21 @@ export default function Bandas() {
                     OcEinc: 0,
                     OcHinc: 0,
                     OcSinc: 0,
+                    OcElim: 0,
+                    OcHlim: 0,
+                    OcSlim: 0,
+                    OcERMS: 0,
+                    OcHRMS: 0,
+                    OcSRMS: 0,
                     PobEinc: 0,
                     PobHinc: 0,
                     PobSinc: 0,
+                    PobElim: 0,
+                    PobHlim: 0,
+                    PobSlim: 0,
+                    PobERMS: 0,
+                    PobHRMS: 0,
+                    PobSRMS: 0,
                     pire: 0,
                     per: 0
                 });
@@ -52,7 +67,11 @@ export default function Bandas() {
                                  nombre={""}
                                  frecuencia={0}
                                  OcEinc={0} OcHinc={0} OcSinc={0}
+                                 OcElim={0} OcHlim={0} OcSlim={0}
+                                 OcERMS={0} OcHRMS={0} OcSRMS={0}
                                  PobEinc={0} PobHinc={0} PobSinc={0}
+                                 PobElim={0} PobHlim={0} PobSlim={0}
+                                 PobERMS={0} PobHRMS={0} PobSRMS={0}
                                  />
                     ));
     };

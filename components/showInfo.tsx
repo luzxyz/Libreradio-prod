@@ -1,5 +1,5 @@
 
-interface informacion {
+export interface informacion {
     index: number;
     potencia : number;
     atenuacion : number;
