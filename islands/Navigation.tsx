@@ -1,4 +1,4 @@
-import { listaDatos } from "../utils/datos.ts";
+import { datos } from "../utils/datos.ts";
 import { useState } from "preact/hooks";
 
 export default function BarraNavegacion() {
@@ -10,13 +10,13 @@ export default function BarraNavegacion() {
         fileReader.readAsText(e.target.files[0], "UTF-8");
         fileReader.onload = e => {
           setFile(JSON.stringify(JSON.parse(e.target.result)));
-          localStorage.setItem("LSlistaDatos",file);
+          //ToDo datos = file
         };
     };
 
     const saveJsonFile = () => {
         const jsonObj = `data:text/json;chatset=utf-8,${encodeURIComponent(
-          JSON.stringify(listaDatos)
+          JSON.stringify(datos)
         )}`;
         const anchor = document.createElement("a");
         anchor.href = jsonObj;
@@ -36,8 +36,7 @@ export default function BarraNavegacion() {
     <div class="Navbar">
         <div class="actionButtons">
             <input class="fakeButton" type="file" onChange={handleChange} />
-            <a class="fakeButton" href="/">Mis datos</a>
-            <a class="fakeButton" href="/resultados">Evaluar</a>
+            <a class="fakeButton" href="">Guardar Evaluacion</a>
             <button class="fakeButton" onClick={saveJsonFile} >Guardar mis datos</button>
             <a class="fakeButton" target="_blank" href="mailto:email@mail.com">¡Envianos un comentario!</a>
         </div>

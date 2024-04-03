@@ -1,9 +1,7 @@
 import CheckList from "../components/checkList.tsx";
 
-
 // Aporte de Andres Parra y Jonathan Cabrera
-function limitesMaximosExposicionOcupacional(
-                                             Einc: number, Hinc: number, Sinc: number,
+function limitesMaximosExposicionOcupacional(Einc: number, Hinc: number, Sinc: number,
                                              frecuencia: number) {
 	const resultado = {
 		informacion : [],
@@ -14,8 +12,9 @@ function limitesMaximosExposicionOcupacional(
 
 	if ( frecuencia >= 0.1 && frecuencia <=30 ){
 		resultado.informacion.push("En escenarios de exposicion ocupacional, la densidad de potencia no aplica para frecuencias menores a 30Mhz.");
-		if (Einc <= (660 / Math.pow(frecuencia,0.7)) &&
-		    Hinc <= (4.9/ frecuencia)){
+        const resultadoA: number = (660 / Math.pow(frecuencia,0.7));
+        const resultadoB: number = (4.9/ frecuencia);
+		if ((Einc <= resultadoA ) && Hinc <= resultadoB){
 			resultado.informacion.push("En escenarios de exposicion ocupacional, la medicion cumple con los Limites maximos de exposicion.");
 			resultado.condicion = true;
 			resultado.aplica = true;
@@ -24,12 +23,12 @@ function limitesMaximosExposicionOcupacional(
 			resultado.condicion = false;
 			resultado.aplica = true;
 
-			if (Einc > (660 / Math.pow(frecuencia,0.7))){
-				resultado.informacion.push("En escenarios de exposicion ocupacional, sobrepasa los limites maximos de exposicion para la intensidad de campo electrico incidente, Einc: "+Einc+" >  "+(660 / Math.pow(frecuencia,0.7)));
+			if (Einc > resultadoA){
+				resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites maximos de exposicion para la intensidad de campo electrico incidente, Einc: ${Einc} >  ${resultadoA}`);
 			}
 
-			if (Hinc > (4.9 / frecuencia)){
-				resultado.informacion.push("En escenarios de exposicion ocupacional, sobrepasa los limites maximos de exposicion para la intensidad de campo magnetico incidente, Hinc: "+Hinc+" > "+(4.9/frecuencia));
+			if (Hinc > resultadoB){
+				resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites maximos de exposicion para la intensidad de campo magnetico incidente, Hinc: ${Hinc} > ${resultadoB}`);
 			}
 			return resultado;
 		}
@@ -48,8 +47,10 @@ function limitesMaximosExposicionOcupacional(
 			return resultado;
 		}
 	} else if (frecuencia > 400 && frecuencia <= 2000){
-		if (Einc <= 3*Math.pow(frecuencia,0.5) && Hinc <= 0.0008*Math.pow(frecuencia,0.5)
-            && Sinc <= frecuencia/40){
+        const resultadoA = 3*Math.pow(frecuencia,0.5);
+        const resultadoB = 0.0008*Math.pow(frecuencia,0.5);
+        const resultadoC = frecuencia/40;
+		if (Einc <= resultadoA && Hinc <= resultadoB && Sinc <= resultadoC){
                             resultado.informacion.push("En escenarios de exposicion ocupacional, la medicion cumple con los Limites maximos de exposicion.");
                             resultado.condicion = true;
                             resultado.aplica = true;
@@ -57,9 +58,9 @@ function limitesMaximosExposicionOcupacional(
 		    }else{
                 resultado.condicion = false;
                 resultado.aplica = true;
-                if(Einc > 3*Math.pow(frecuencia,0.5)){resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites de exposicion para la intensidad de campo electrico incidente, Einc: ${Einc} > ${3*Math.pow(frecuencia,0.5)}`);}
-                if(Hinc > 0.0008*Math.pow(frecuencia,0.5)){resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites de exposicion para la intensidad de campo magnetico incidente, Hinc: ${Hinc} > ${0.0008*Math.pow(frecuencia,0.5)}`);}
-                if(Sinc > frecuencia/40){resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites de exposicion para la densidad de potencia incidente, Sinc: ${Sinc} > ${frecuencia/40}`);}
+                if(Einc > resultadoA){resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites de exposicion para la intensidad de campo electrico incidente, Einc: ${Einc} > ${resultadoA}`);}
+                if(Hinc > resultadoB){resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites de exposicion para la intensidad de campo magnetico incidente, Hinc: ${Hinc} > ${resultadoB}`);}
+                if(Sinc > resultadoC){resultado.informacion.push(`En escenarios de exposicion ocupacional, sobrepasa los limites de exposicion para la densidad de potencia incidente, Sinc: ${Sinc} > ${resultadoC}`);}
 
                 return resultado;
 		    }
@@ -96,8 +97,9 @@ function limitesMaximosExposicionPoblacional(Einc: number, Hinc: number, Sinc: n
 
 	if ( frecuencia >= 0.1 && frecuencia <=30 ){
 		resultado.informacion.push("En escenarios de exposicion poblacional, la densidad de potencia no aplica para frecuencias menores a 30Mhz.");
-		if (Einc <= (300 / Math.pow(frecuencia,0.7)) &&
-		    Hinc <= (2.2/ frecuencia)){
+        const resultadoA = (300 / Math.pow(frecuencia,0.7));
+        const resultadoB = (2.2/ frecuencia);
+		if (Einc <= resultadoA && Hinc <= resultadoB){
                 resultado.informacion.push("En escenarios de exposicion poblacional, la medicion cumple con los Limites maximos de exposicion.");
                 resultado.condicion = true;
                 resultado.aplica = true;
@@ -105,13 +107,12 @@ function limitesMaximosExposicionPoblacional(Einc: number, Hinc: number, Sinc: n
 		} else {
 			resultado.condicion = false;
 			resultado.aplica = true;
-
-			if (Einc > (300/ Math.pow(frecuencia,0.7))){
-				resultado.informacion.push("En escenarios de exposicion poblacional, sobrepasa los limites maximos de exposicion para la intensidad de campo electrico incidente, Einc: "+Einc+" >  "+(300 / Math.pow(frecuencia,0.7)));
+			if (Einc > resultadoA){
+				resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites maximos de exposicion para la intensidad de campo electrico incidente, Einc: ${Einc} > ${resultadoA}`);
 			}
 
-			if (Einc > (2.2 / frecuencia)){
-				resultado.informacion.push("En escenarios de exposicion poblacional, sobrepasa los limites maximos de exposicion para la intensidad de campo magnetico incidente, Hinc: "+Einc+" > "+(2.2/frecuencia));
+			if (Einc > resultadoB){
+				resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites maximos de exposicion para la intensidad de campo magnetico incidente, Hinc: ${Hinc} > ${resultadoB}`);
 			}
 			return resultado;
 		}
@@ -130,8 +131,10 @@ function limitesMaximosExposicionPoblacional(Einc: number, Hinc: number, Sinc: n
 			return resultado;
 		}
 	} else if (frecuencia > 400 && frecuencia <= 2000){
-		if (Einc <= 1.375*Math.pow(frecuencia,0.5) && Hinc <= 0.0037*Math.pow(frecuencia,0.5)
-            && Sinc <= frecuencia/200){
+        const resultadoA = 1.375*Math.pow(frecuencia,0.5);
+        const resultadoB = 0.0037*Math.pow(frecuencia,0.5);
+        const resultadoC = frecuencia/200;
+		if (Einc <= resultadoA && Hinc <= resultadoB && Sinc <= resultadoC){
                 resultado.informacion.push("En escenarios de exposicion poblacional, la medicion cumple con los Limites maximos de exposicion.");
                 resultado.condicion = true;
                 resultado.aplica = true;
@@ -139,9 +142,12 @@ function limitesMaximosExposicionPoblacional(Einc: number, Hinc: number, Sinc: n
 		    }else{
                 resultado.condicion = false;
                 resultado.aplica = true;
-                if(Einc > 1.375*Math.pow(frecuencia,0.5)){resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites de exposicion para la intensidad de campo electrico incidente, Einc: ${Einc} > ${1.375*Math.pow(frecuencia,0.5)}`);}
-                if(Hinc > 0.0037*Math.pow(frecuencia,0.5)){resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites de exposicion para la intensidad de campo magnetico incidente, Hinc: ${Hinc} > ${0.0037*Math.pow(frecuencia,0.5)}`);}
-                if(Sinc > frecuencia/200){resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites de exposicion para la densidad de potencia incidente, Sinc: ${Sinc} > ${frecuencia/40}`);}
+
+                if(Einc > resultadoA ){resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites de exposicion para la intensidad de campo electrico incidente, Einc: ${Einc} > ${resultadoA}`);}
+
+                if(Hinc > resultadoB ){resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites de exposicion para la intensidad de campo magnetico incidente, Hinc: ${Hinc} > ${resultadoB}`);}
+
+                if(Sinc > resultadoC ){resultado.informacion.push(`En escenarios de exposicion poblacional, sobrepasa los limites de exposicion para la densidad de potencia incidente, Sinc: ${Sinc} > ${resultadoC}`);}
 
 			return resultado;
 		    }
@@ -166,14 +172,14 @@ function limitesMaximosExposicionPoblacional(Einc: number, Hinc: number, Sinc: n
 
 }
 
-interface tipoEvalua{
+interface variables {
     Einc: number;
     Hinc: number;
     Sinc: number;
     frecuencia: number;
 }
 
-export default function Evalua(props: tipoEvalua) {
+export default function Evalua(props: variables) {
     const resultados = [];
     resultados.push(limitesMaximosExposicionOcupacional(props.Einc, props.Hinc, props.Sinc, props.frecuencia));
     resultados.push(limitesMaximosExposicionPoblacional(props.Einc, props.Hinc, props.Sinc, props.frecuencia));

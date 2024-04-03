@@ -1,37 +1,52 @@
-import {signal} from "@preact/signals";
+import { Signal, signal, ReadonlySignal, computed } from "@preact/signals";
 
-interface Datos {
-    index: number;
-    potencia: number;
-    atenuacion: number;
-    gananciaIsotropa: number;
-    gananciaReal: number;
-    nombre: string;
-    frecuencia: number;
+export interface Datos {
+    nombre: Signal<string>;
+    frecuencia: Signal<number>;
 
-    Einc: number,
-    Hinc: number,
-    Sinc: number,
+    Einc: Signal<number>,
+    Hinc: Signal<number>,
+    Sinc: Signal<number>,
 
-    Elim: number,
-    Hlim: number,
-    Slim: number,
-    ERMS: number,
-    HRMS: number,
-    SRMS: number,
+    Elim: Signal<number>,
+    Hlim: Signal<number>,
+    Slim: Signal<number>,
+    ERMS: Signal<number>,
+    HRMS: Signal<number>,
+    SRMS: Signal<number>,
 
-    pire: number,
-    per: number,
-    ER: number
+    pire: Signal<number>,
+    per: Signal<number>,
+    ER: ReadonlySignal<number>
 }
 
-export const listaDatos = signal<Datos[]>([]);
+export const datos: Datos = {
+    nombre: signal(""),
+    frecuencia: signal(0),
 
-export function leerLocalStorage(){
-        let LSListaDatos = JSON.parse(localStorage.getItem("LSlistaDatos"));
-        if ( LSListaDatos !== null ) {
-            LSListaDatos = Object.values(LSListaDatos);
-            listaDatos.value = [...LSListaDatos];
-        }
-}
+    Einc: signal(0),
+    Hinc: signal(0),
+    Sinc: signal(0),
 
+    Elim: signal(0),
+    Hlim: signal(0),
+    Slim: signal(0),
+    ERMS: signal(0),
+    HRMS: signal(0),
+    SRMS: signal(0),
+
+    pire: signal(0),
+    per: signal(0),
+
+    get ER() {
+        return computed(()=>{
+            const num = Math.max(Math.pow(this.ERMS.value/this.Elim.value,2),Math.pow(this.HRMS.value/this.Hlim.value,2));
+            return Math.round((num + Number.EPSILON) * 100) / 100;
+        });
+    }
+};
+
+export const ER: ReadonlySignal = computed(()=> {
+                              const num = Math.max(Math.pow(datos.ERMS.value/datos.Elim.value,2),Math.pow(datos.HRMS.value/datos.Hlim.value,2));
+                              return Math.round((num + Number.EPSILON) * 100) / 100;
+                          });

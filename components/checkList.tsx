@@ -2,12 +2,10 @@ function LadoIzquierdo({aplica, condicion}) {
     if (condicion){
         return(<div class="boolInfoLeft">
             <img src="check.svg" alt="Aplica" width="50"/>
-            <h2>No requiere medicion</h2>
         </div>);
     } else {  
         return(<div class="boolInfoLeft">
             <img src="fail.svg" alt="noAplica" width="50"/>
-            <h2>Requiere medicion</h2>
         </div>);
     }
 }
@@ -36,7 +34,9 @@ export default function CheckList( props : checkProps ) {
 
     return (
             <div class={classes}>
-                <LadoIzquierdo aplica={props.aplica,props.condicion}/>
+                <LadoIzquierdo
+                    aplica={props.aplica}
+                    condicion={props.condicion}/>
                 <div>
                     <LadoDerechoTitulo condicion={props.condicion} />
                     {props.info.map((detalles: string) => <p>✔️ {detalles}</p>)}
