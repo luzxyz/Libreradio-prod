@@ -5,11 +5,11 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $Bandas from "./islands/Bandas.tsx";
-import * as $Evaluate from "./islands/Evaluate.tsx";
+import * as $Eval2ANE from "./islands/Eval2ANE.tsx";
+import * as $Eval3_2ANE from "./islands/Eval3_2ANE.tsx";
 import * as $Navigation from "./islands/Navigation.tsx";
-import * as $PirePer from "./islands/PirePer.tsx";
-import * as $Results from "./islands/Results.tsx";
+import * as $Transmisor from "./islands/Transmisor.tsx";
+import * as $showInfo from "./islands/showInfo.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -19,11 +19,11 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./islands/Bandas.tsx": $Bandas,
-    "./islands/Evaluate.tsx": $Evaluate,
+    "./islands/Eval2ANE.tsx": $Eval2ANE,
+    "./islands/Eval3_2ANE.tsx": $Eval3_2ANE,
     "./islands/Navigation.tsx": $Navigation,
-    "./islands/PirePer.tsx": $PirePer,
-    "./islands/Results.tsx": $Results,
+    "./islands/Transmisor.tsx": $Transmisor,
+    "./islands/showInfo.tsx": $showInfo,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

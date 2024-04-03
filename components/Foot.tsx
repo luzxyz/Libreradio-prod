@@ -11,18 +11,22 @@ export default function Foot(){
         </div>
         <div>
             <h5>Contacto de los creadores 🔥</h5>
+            <a href="mailto:marlonpb@udistrital.edu.co">Marlon Patiño</a>
+            <p>marlonpb@udistrital.edu.co</p>
             <a href="mailto:janderaster@protonmail.com">Jorge Gutierrez</a>
             <p>janderaster@protonmail.com</p>
-            <a href="mailto:andres@mail.com">Andres Parra Espejo</a>
-            <p>andres@mail.com</p>
+            <a href="mailto:jrcabrerar@udistrital.edu.co">Jonathan Cabrera</a>
+            <p>jrcabrerar@udistrital.edu.co</p>
+            <a href="mailto:gaparrae@udistrital.edu.co">Andres Parra Espejo</a>
+            <p>gaparrae@udistrital.edu.co</p>
             <a href="mailto:giovanny@mail.com">Giovanny Pira Aldana</a>
-            <p>giovanny@mail.com</p>
-            <a href="mailto:jonathan@mail.com">Jonathan Cabrera</a>
-            <p>jonathan@mail.com</p>
+            <p>giovanny@gio.vanny</p>
         </div>
         <div>
-            <h5>Con la colaboración de 🚀</h5>
-            <p>Universidad Distrital FJC - Bogotá</p>
+            <h5>Nuestra hermosa universidad 🎓</h5>
+            <p><a href="https://www.udistrital.edu.co/inicio">Universidad Distrital FJC - Bogotá</a></p>
+            <p><a href="https://ftecnologica.udistrital.edu.co/">Facultad Tecnológica</a></p>
+            <p><a href="https://ftecnologica.udistrital.edu.co/ingtelematica/index.php/">Ingeniería Telemática</a></p>
         </div>
         </footer>
     );

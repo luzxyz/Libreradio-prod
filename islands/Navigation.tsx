@@ -36,9 +36,9 @@ export default function BarraNavegacion() {
     <div class="Navbar">
         <div class="actionButtons">
             <input class="fakeButton" type="file" onChange={handleChange} />
-            <a class="fakeButton" href="">Guardar Evaluacion</a>
+            <a class="fakeButton" href="#">Guardar Evaluacion</a>
             <button class="fakeButton" onClick={saveJsonFile} >Guardar mis datos</button>
-            <a class="fakeButton" target="_blank" href="mailto:email@mail.com">¡Envianos un comentario!</a>
+            <a class="fakeButton" target="_blank" href="mailto:contactolibreradio@proton.me">¡Envianos un comentario!</a>
         </div>
     </div>
            );

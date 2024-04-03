@@ -10,17 +10,18 @@ function LadoIzquierdo({aplica, condicion}) {
     }
 }
 
-function LadoDerechoTitulo({condicion}){
+function LadoDerechoTitulo({condicion, donde}){
     if (condicion){
-        return <h2>cumple</h2>;
+        return <h2>cumple: {donde}</h2>;
     } else {
-        return <h2>no cumple</h2>;
+        return <h2>no cumple: {donde}</h2>;
     }
 }
 
 interface checkProps {
-    condicion: boolean;
+    donde: string;
     info: string[];
+    condicion: boolean;
     aplica: boolean;
 }
 
@@ -38,7 +39,8 @@ export default function CheckList( props : checkProps ) {
                     aplica={props.aplica}
                     condicion={props.condicion}/>
                 <div>
-                    <LadoDerechoTitulo condicion={props.condicion} />
+                    <LadoDerechoTitulo condicion={props.condicion}
+                                       donde={props.donde}/>
                     {props.info.map((detalles: string) => <p>✔️ {detalles}</p>)}
                 </div>
             </div>

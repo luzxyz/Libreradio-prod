@@ -1,9 +1,18 @@
 import CheckList from "../components/checkList.tsx";
+import { Signal } from "preact/hooks";
+
+interface resultado {
+    donde: string;
+    informacion: string[];
+    condicion: boolean;
+    aplica: boolean;
+}
 
 // Aporte de Andres Parra y Jonathan Cabrera
 function limitesMaximosExposicionOcupacional(Einc: number, Hinc: number, Sinc: number,
                                              frecuencia: number) {
-	const resultado = {
+	const resultado: resultado = {
+        donde: "[Punto 2 ANE] Limites maximos de exposicion espacio ocupacional",
 		informacion : [],
 		condicion : false,
 		aplica : false
@@ -88,6 +97,7 @@ function limitesMaximosExposicionOcupacional(Einc: number, Hinc: number, Sinc: n
 function limitesMaximosExposicionPoblacional(Einc: number, Hinc: number, Sinc: number,
                                              frecuencia: number) {
 	const resultado: resultado = {
+        donde: "[Punto 2 ANE] Limites maximos de exposicion espacio poblacional",
 		informacion : [],
 		condicion : false,
 		aplica : false
@@ -173,22 +183,27 @@ function limitesMaximosExposicionPoblacional(Einc: number, Hinc: number, Sinc: n
 }
 
 interface variables {
-    Einc: number;
-    Hinc: number;
-    Sinc: number;
+    Einc_p: number;
+    Hinc_p: number;
+    Sinc_p: number;
+    Einc_o: number;
+    Hinc_o: number;
+    Sinc_o: number;
     frecuencia: number;
 }
 
-export default function Evalua(props: variables) {
-    const resultados = [];
-    resultados.push(limitesMaximosExposicionOcupacional(props.Einc, props.Hinc, props.Sinc, props.frecuencia));
-    resultados.push(limitesMaximosExposicionPoblacional(props.Einc, props.Hinc, props.Sinc, props.frecuencia));
+export default function Evalua_2ANE(props: variables) {
+    const resultados: Array<resultado> = [];
+    resultados.push(limitesMaximosExposicionOcupacional(props.Einc_o, props.Hinc_o, props.Sinc_o, props.frecuencia));
+    resultados.push(limitesMaximosExposicionPoblacional(props.Einc_p, props.Hinc_p, props.Sinc_p, props.frecuencia));
+
     return (
         <div class="checkList">
     {resultados.map((resultado: any)=>{
                 return <CheckList condicion={resultado.condicion}
                            aplica={resultado.aplica}
-                           info={resultado.informacion}/>
+                           info={resultado.informacion}
+                           donde={resultado.donde}/>
                 })}
         </div>);
 }
